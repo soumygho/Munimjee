@@ -1,0 +1,13 @@
+package com.munimjee.dao;
+
+import java.util.List;
+
+import com.munimjee.models.ModelUser;
+
+public interface UserDao {
+public void addUser(ModelUser modelUser);
+public void deleteUser(int id);
+public ModelUser updateUser(ModelUser modelUser);
+public List<ModelUser> getUsers();
+public ModelUser getUser(int id);
+}

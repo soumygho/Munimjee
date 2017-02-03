@@ -1,0 +1,14 @@
+package com.munimjee.models;
+import javax.persistence.*;
+public class ModelUser {
+	
+	private int userSequesnce = 0;
+	private String userId = "";
+	private String password = "";
+	private String emailId = "";
+	private String firstName = "";
+	private String lastName ="";
+	private int mobileNo = 0;
+	private String userCol = "";
+
+}

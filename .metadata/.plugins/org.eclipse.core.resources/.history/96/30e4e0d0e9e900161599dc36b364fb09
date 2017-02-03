@@ -1,0 +1,5 @@
+package com.munimjee.dao;
+
+public interface UserDao {
+
+}

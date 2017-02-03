@@ -1,0 +1,8 @@
+package com.munimjee.dao;
+
+import com.munimjee.models.ModelUser;
+
+public interface UserDao {
+public void addUser(ModelUser modelUser);
+
+}

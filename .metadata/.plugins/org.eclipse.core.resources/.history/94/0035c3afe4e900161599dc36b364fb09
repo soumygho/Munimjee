@@ -1,0 +1,9 @@
+package com.munimjee.models;
+
+public class ModelUser {
+	
+	private int userSequesnce = 0;
+	private string userId = "";
+	
+
+}
