@@ -1,0 +1,21 @@
+package com.munimjee.models.registration;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+@Entity
+@Table(name="organization_userrole")
+public class ModelOrganizationUserRole implements Serializable{
+	@Column(name="User_nmUserSeq",nullable=false,insertable=false,updatable=false)
+	private int userId = 0;
+	@Column(name="Roles_nmUserRoleId",nullable=false,insertable=false,updatable=false)
+	private int userRoleId = 0;
+	@Column(name="Organization_nmOrganizationId",nullable=false,insertable=false,updatable=false)
+	private int organizationId = 0;
+	private ModelUser user = null;
+	private ModelRoles role = null;
+	private ModelOrganization organization = null;
+	
+}

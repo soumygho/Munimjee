@@ -1,0 +1,13 @@
+package com.munimjee.dao.registration;
+
+import java.util.List;
+
+import com.munimjee.models.registration.ModelUser;
+
+public interface Dao {
+public void add(ModelUser modelUser);
+public void delete(int id);
+public ModelUser update(ModelUser modelUser);
+public List<ModelUser> getUsers();
+public ModelUser getUser(int id);
+}

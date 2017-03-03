@@ -1,0 +1,66 @@
+package com.munimjee.models.registration;
+
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.munimjee.models.Model;
+@Entity
+@Table(name="user_access")
+public class ModelUserAccess implements Serializable,Model{
+	@Id
+	@Column(name="nmUserAccessId",nullable=false,unique=true)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int userAccessId = 0;
+	@Column(name="Modules_nmModuleId",nullable=false,insertable=false,updatable=false)
+	private int moduleId = 0;
+	@Column(name="Roles_nmUserRoleId",nullable=false,insertable=false,updatable=false)
+	private int userRoleId = 0;
+	@OneToOne
+	@JoinColumn(name="Modules_nmModuleId",referencedColumnName="nmModuleId")
+	private ModelModules module = null;
+	@OneToOne
+	@JoinColumn(name="Roles_nmUserRoleId",referencedColumnName="nmUserRoleId")
+	private ModelRoles role = null;
+	public int getUserAccessId() {
+		return userAccessId;
+	}
+	public void setUserAccessId(int userAccessId) {
+		this.userAccessId = userAccessId;
+	}
+	public int getModuleId() {
+		return moduleId;
+	}
+	public void setModuleId(int moduleId) {
+		this.moduleId = moduleId;
+	}
+	public int getUserRoleId() {
+		return userRoleId;
+	}
+	public void setUserRoleId(int userRoleId) {
+		this.userRoleId = userRoleId;
+	}
+	public ModelModules getModule() {
+		return module;
+	}
+	public void setModule(ModelModules module) {
+		this.module = module;
+	}
+	public ModelRoles getRole() {
+		return role;
+	}
+	public void setRole(ModelRoles role) {
+		this.role = role;
+	}
+	
+
+}

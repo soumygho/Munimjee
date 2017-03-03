@@ -1,0 +1,9 @@
+package com.munimjee.models.registration;
+
+import java.io.Serializable;
+
+public class ModelOrganizationUserRole implements Serializable{
+
+	
+	
+}

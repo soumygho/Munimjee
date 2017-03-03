@@ -1,0 +1,27 @@
+package com.munimjee.models.registration;
+
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+public class ModeUserAccess implements Serializable{
+	@Id
+	@Column(name="nmUserAccessId",nullable=false,unique=true)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int userAccessId = 0;
+	@Column(name="Modules_nmModuleId",nullable=false,insertable=false,updatable=false)
+	private int moduleId = 0;
+	@Column(name="Roles_nmUserRoleId",nullable=false,insertable=false,updatable=false)
+	private int userRoleId = 0;
+	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="moduleId")
+	private ModelModules module = null;
+	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="Modules_nmModuleId")
+	private ModelRoles role = null;
+
+}

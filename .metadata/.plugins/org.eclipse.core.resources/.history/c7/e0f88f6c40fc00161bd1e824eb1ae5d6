@@ -1,0 +1,103 @@
+package com.munimjee.controllers.registration;
+
+import java.awt.PageAttributes.MediaType;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import com.munimjee.controllers.requestbeans.ModuleRequest;
+import com.munimjee.dao.registration.ModuleDao;
+import com.munimjee.models.registration.ModelModules;
+@Component
+@RestController
+public class ModuleController {
+	final static Logger log = Logger.getLogger(ModuleController.class);
+	@Autowired
+	private ModuleDao moduleDao = null;
+	@RequestMapping(value="/modules/",method=RequestMethod.POST,produces={"application/json", "application/xml"},consumes={"application/json", "application/xml"})
+	public ResponseEntity<Void> addModule(@RequestBody ModelModules module,UriComponentsBuilder ucBuilder)
+	{
+		log.info("addModule Service Called");
+		System.out.println("addModule service called");
+		if(moduleDao.exists(module))
+		{
+			log.info("same user exists");
+			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+		}
+		module = moduleDao.add(module);
+		if(module.getModuleId()==0)
+		{
+			return new ResponseEntity<Void>(HttpStatus.EXPECTATION_FAILED);
+		}
+		HttpHeaders httpHeader = new HttpHeaders();
+		httpHeader.setLocation(ucBuilder.path("/modules/{id}").buildAndExpand(module.getModuleId()).toUri());
+		 return new ResponseEntity<Void>(httpHeader, HttpStatus.CREATED);
+	}
+	@RequestMapping(value="/modules/{id}",method=RequestMethod.GET,produces={"application/json", "application/xml"})
+	public ResponseEntity<ModelModules> getModule(@PathVariable("id") int id)
+	{
+		log.info("getModule Service Called");
+		System.out.println("getModule Service Called");
+		System.out.println("Pat variable value : "+id);
+		ModelModules module = moduleDao.get(id);
+		if(module==null)
+		{
+			System.out.println("Not found");
+			return new ResponseEntity<ModelModules>(HttpStatus.NOT_FOUND);
+			
+		}
+		System.out.println(module.getModuleName());
+		return new ResponseEntity<ModelModules>(module,HttpStatus.OK);
+	
+	}
+	@RequestMapping(value="/modules/{id}",method=RequestMethod.DELETE)
+	public ResponseEntity<Void> deleteModule(@PathVariable("id")int id)
+	{
+		log.info("deleteModule Service Called");
+		System.out.println("deleteModule service called");
+		ModelModules module = moduleDao.get(id);
+		if(module==null)
+		{
+			System.out.println("Not found");
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+			
+		}
+		moduleDao.delete(id);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+		
+	}
+	@RequestMapping(value="/modules/",method=RequestMethod.GET,produces={"application/json", "application/xml"},consumes={"application/json", "application/xml"})
+	public ResponseEntity<ModuleRequest> getAllModule()
+	{
+		log.info("getModule Service Called");
+		System.out.println("getAllModule Service Called");
+		
+		List<ModelModules> modules = moduleDao.getAll();
+		if(modules==null)
+		{
+			System.out.println("Not found");
+			return new ResponseEntity<ModuleRequest>(HttpStatus.NOT_FOUND);
+			
+		}
+		else if(modules.size()==0)
+		{
+			System.out.println("Not found");
+			return new ResponseEntity<ModuleRequest>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<ModuleRequest>(modules,HttpStatus.OK);
+	
+	}
+}

@@ -1,0 +1,28 @@
+package com.munimjee.models;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table(name="organization")
+public class ModelOrganization {
+	@Id
+	@Column(name="nmOrganizationId")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int organizationID = 0;
+	@Column(name="szOrganizationName")
+	private String organizationName = null;
+	@Column(name="dtRegistration")
+	private Date dateOfRegistration = null;
+	@Column(name="flgOrganizationValidated")
+	private String validOrganizationFlag = null;
+	@Column(name="flgIsOrganizationMunimjee")
+	private String validOrganizationFlag = null;
+	
+	
+}

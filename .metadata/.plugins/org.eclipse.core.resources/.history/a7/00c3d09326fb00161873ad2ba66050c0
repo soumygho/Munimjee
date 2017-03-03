@@ -1,0 +1,31 @@
+package com.munimjee.models.registration;
+
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+@Entity
+@Table(name="organization_userrole")
+public class ModelOrganizationUserRole implements Serializable{
+	@Column(name="User_nmUserSeq",nullable=false,insertable=false,updatable=false)
+	private int userId = 0;
+	@Column(name="Roles_nmUserRoleId",nullable=false,insertable=false,updatable=false)
+	private int userRoleId = 0;
+	@Column(name="Organization_nmOrganizationId",nullable=false,insertable=false,updatable=false)
+	private int organizationId = 0;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="User_nmUserSeq",referencedColumnName="nmUserSeq",nullable=false)
+	private ModelUser user = null;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="User_nmUserSeq",referencedColumnName="nmUserSeq",nullable=false)
+	private ModelRoles role = null;
+	@ManyToOne(fetch=FetchType.LAZY)
+	private ModelOrganization organization = null;
+	
+}

@@ -1,0 +1,5 @@
+package com.munimjee.controllers.requestbeans;
+
+public class ModuleRequest {
+private List<ModelModules> modules = null;
+}

@@ -1,0 +1,10 @@
+package com.munimjee.models.registration;
+
+import java.io.Serializable;
+
+public class ModelModules implements Serializable{
+	
+	private int moduleId = 0;
+	private String moduleName = null;
+
+}

@@ -1,0 +1,10 @@
+package com.munimjee.models.registration;
+
+import java.io.Serializable;
+
+public class ModeUserAccess implements Serializable{
+	private int userAccessId = 0;
+	private int moduleId = 0;
+	private int userRoleId = 0;
+
+}

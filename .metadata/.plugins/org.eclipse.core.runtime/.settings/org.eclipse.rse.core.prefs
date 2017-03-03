@@ -1,3 +1,4 @@
+activeuserprofiles=Team;admin-PC;user-PC
 eclipse.preferences.version=1
 org.eclipse.rse.systemtype.local.systemType.defaultUserId=admin
 useridperkey=admin-PC.Local\=admin;

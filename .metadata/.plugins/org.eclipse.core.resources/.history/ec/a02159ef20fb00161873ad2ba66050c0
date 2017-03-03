@@ -1,0 +1,13 @@
+package com.munimjee.models.registration;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+@Entity
+@Table(name="modules")
+public class ModelModules implements Serializable{
+	
+	private int moduleId = 0;
+	private String moduleName = null;
+
+}

@@ -1,0 +1,5 @@
+package com.munimjee.models.registration;
+
+public class ModelOrganizationUserRole {
+
+}

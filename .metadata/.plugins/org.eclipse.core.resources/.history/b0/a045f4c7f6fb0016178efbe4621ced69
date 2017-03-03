@@ -1,0 +1,38 @@
+package com.munimjee.models.registration;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.munimjee.models.Model;
+@Entity
+@Table(name="modules")
+@JsonPropertyOrder({"moduleid","modulename"})
+public class ModelModules implements Serializable,Model{
+	@Id
+	@Column(name="nmModuleId",nullable=false,unique=true)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int moduleId = 0;
+	@Column(name="szModuleName",nullable=false,unique=true)
+	private String moduleName = null;
+	public int getModuleId() {
+		return moduleId;
+	}
+	public void setModuleId(int moduleId) {
+		this.moduleId = moduleId;
+	}
+	public String getModuleName() {
+		return moduleName;
+	}
+	public void setModuleName(String moduleName) {
+		this.moduleName = moduleName;
+	}
+	
+
+}

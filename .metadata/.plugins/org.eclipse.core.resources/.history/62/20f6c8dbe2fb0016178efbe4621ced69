@@ -1,0 +1,12 @@
+package com.munimjee.controllers.test;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class TestController {
+	
+	public String test()
+	{
+		return "This is Munimjee Rest service v1.0!!!"
+	}
+}

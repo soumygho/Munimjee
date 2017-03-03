@@ -1,0 +1,120 @@
+package com.munimjee.dao.registration;
+
+import java.util.List;
+
+
+
+import org.apache.log4j.Logger;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.munimjee.models.Model;
+import com.munimjee.models.registration.ModelModules;
+import com.munimjee.util.HibernateUtil;
+
+public class ModuleDao  {
+	final static Logger log = Logger.getLogger(ModuleDao.class);
+	String hql = "";
+	Session session = null;
+	Query query = null;
+	Transaction transaction = null;
+	public boolean add(ModelModules module){
+		boolean flag = false;
+		try
+		{
+			session = HibernateUtil.getSeesionfactory().openSession();
+			transaction = session.beginTransaction();
+			session.save(module);
+			transaction.commit();
+			flag = true;
+		}
+		catch(Exception e)
+		{
+			log.error(e.getStackTrace());
+		}
+		finally
+		{
+			session.close();
+		}
+		return flag;
+	}
+
+	public boolean delete(int id) {
+		boolean flag = false;
+		try
+		{
+			session = HibernateUtil.getSeesionfactory().openSession();
+			hql = "from ModelModules M where M.moduleId = :moduleid";
+			query = session.createQuery(hql);
+			query.setParameter("moduleid", id);
+			List<ModelModules> modules = query.list();
+			if(modules!=null&&modules.size()>0)
+			{
+				ModelModules module = modules.get(0);
+				transaction = session.beginTransaction();
+				session.delete(module);
+				transaction.commit();
+				flag = true;
+			}
+			
+		}
+		catch(Exception e)
+		{
+			log.error(e.getStackTrace());
+		}
+		finally
+		{
+			session.close();
+		}
+		return flag;
+	}
+
+	public boolean update(ModelModules module) {
+		
+		boolean flag = false;
+		try
+		{
+			session = HibernateUtil.getSeesionfactory().openSession();
+			transaction = session.beginTransaction();
+			session.update(module);
+			transaction.commit();
+			flag=true;
+		}
+		catch(Exception e)
+		{
+			log.error(e.getStackTrace());
+		}
+		finally
+		{
+			session.close();
+		}
+		return flag;
+	}
+
+	public List<ModelModules> getAll() {
+		try
+		{
+			session = HibernateUtil.getSeesionfactory().openSession();
+			transaction = session.beginTransaction();
+			session.update(module);
+			transaction.commit();
+			flag=true;
+		}
+		catch(Exception e)
+		{
+			log.error(e.getStackTrace());
+		}
+		finally
+		{
+			session.close();
+		}
+		return null;
+	}
+
+	public ModelModules get(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
